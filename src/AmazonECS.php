@@ -29,7 +29,7 @@ class AmazonECS
 
 		$this->access_key 		= config('amazon.access_key');
 		$this->secret_key 		= config('amazon.secret_key');
-		$this->associate_tag 	= config('amazon.associate_tag');
+		$this->associate_tag	= config('amazon.associate_tag');
 		$this->client 			= new Client;
 	}
 

@@ -7,6 +7,7 @@ Documentation will be updated tomorrow (as of this commit).
 ### Planned
 
 - **Finish documentation!**
+- **Locales**
 - Better exception handling
 - Cart abilities, such as modifying, adding, clearing etc.
 - XML to JSON (the ECS API returns an XML response, I myself would like to have the ability to convert this to JSON - but optional)
