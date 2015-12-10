@@ -1,0 +1,23 @@
+{
+    "name": "dawson/amazon-ecs",
+    "description": "With Laravel, search and lookup Amazon products easily.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joe Dawson",
+            "email": "hi@joedawson.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Dawson\\AmazonECS\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/support": "~5.1",
+        "guzzlehttp/guzzle": "~6.0",
+        "symfony/psr-http-message-bridge": "0.2"
+    }
+}
