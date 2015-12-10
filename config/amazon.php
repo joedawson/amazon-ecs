@@ -17,4 +17,9 @@ return [
 	 */
 	'associate_tag' => '',
 
+	/**
+	 * Preferred locale
+	 */
+	'locale' => 'co.uk'
+
 ];

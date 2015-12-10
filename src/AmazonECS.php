@@ -2,7 +2,7 @@
 
 namespace Dawson\AmazonECS;
 
-use Exception;
+use InvalidArgumentException;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
@@ -13,23 +13,31 @@ class AmazonECS
 
 	/**
 	 * Base API URL
+	 * 
 	 * @var string
 	 */
-	protected $baseUrl = 'webservices.amazon.co.uk';
+	protected $baseUrl = 'webservices.amazon';
+
+	/**
+	 * Available Locales
+	 * 
+	 * @var array
+	 */
+	protected $locales = [
+		'co.uk', 'com', 'ca', 'br', 'de', 'es', 'fr', 'in', 'it', 'co.jp', 'com.mx'
+	];
 
 	/**
 	 * Constructor
 	 */
 	public function __construct()
 	{
-		if(empty(config('amazon.access_key')) || empty(config('amazon.secret_key')))
-		{
-			throw new Exception('No Access Key or Secret Key has been set.');
-		}
+		$this->validConfig();
 
 		$this->access_key 		= config('amazon.access_key');
 		$this->secret_key 		= config('amazon.secret_key');
 		$this->associate_tag	= config('amazon.associate_tag');
+		$this->locale			= config('amazon.locale');
 		$this->client 			= new Client;
 	}
 
@@ -70,6 +78,30 @@ class AmazonECS
 			return $this->client->request('GET', $url);
 		} catch(ClientException $e) {
 			return $e->getResponse();
+		}
+	}
+
+	/**
+	 * Determines if the configuration was valid.
+	 * 
+	 * @return InvalidException
+	 */
+	private function validConfig()
+	{
+		if(empty(config('amazon.access_key')) || empty(config('amazon.secret_key')))
+		{
+			throw new InvalidArgumentException('No Access Key or Secret Key has been set.');
+		}
+
+		if(!in_array(config('amazon.locale'), $this->locales))
+		{
+			throw new InvalidArgumentException(
+				sprintf(
+					'You have configured an invalid locale "%s". Possible locales are: %s',
+					config('amazon.locale'),
+					implode(', ', $this->locales)
+				)
+			);
 		}
 	}
 }

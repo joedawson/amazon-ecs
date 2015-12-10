@@ -5,6 +5,16 @@ namespace Dawson\AmazonECS;
 trait Helpers {
 
 	/**
+	 * Generate the endpoint URL
+	 * 
+	 * @return string
+	 */
+	function endpoint()
+	{
+		return $this->baseUrl . '.' . $this->locale;
+	}
+
+	/**
 	 * Build the string, ready for signing.
 	 * 
 	 * @param  string $params
@@ -14,7 +24,7 @@ trait Helpers {
 	function buildString($params, $prefix = 'GET')
 	{
 		return $prefix . "\n"
-			 . $this->baseUrl . "\n"
+			 . $this->endpoint() . "\n"
 			 . "/onca/xml\n"
 			 . $params;
 	}
@@ -28,7 +38,7 @@ trait Helpers {
 	 */
 	function url($params, $signature)
 	{
-		return 'http://' . $this->baseUrl . '/onca/xml?' . $params . '&Signature=' . $signature;
+		return 'http://' . $this->endpoint() . '/onca/xml?' . $params . '&Signature=' . $signature;
 	}
 
 	/**
