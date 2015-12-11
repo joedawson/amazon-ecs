@@ -2,6 +2,14 @@
     "name": "dawson/amazon-ecs",
     "description": "With Laravel, search and lookup Amazon products easily.",
     "license": "MIT",
+    "keywords": [
+      "laravel",
+      "amazon",
+      "ecs",
+      "product advertising",
+      "associate",
+      "affiliate"
+    ],
     "authors": [
         {
             "name": "Joe Dawson",
