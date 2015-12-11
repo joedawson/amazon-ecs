@@ -63,7 +63,7 @@ $response = Amazon::search('Home Alone');
 You can also lookup any given item, assuming it's availble on your configure locale and is a valid **ASIN**, of which is possible by doing the following:
 
 ```php
-$product = Amazon::product('B004VLKY8M');
+$product = Amazon::lookup('B004VLKY8M');
 ```
 
 This will simply return the product, it's attributes and item links.
