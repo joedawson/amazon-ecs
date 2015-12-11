@@ -1,6 +1,8 @@
-# Amazon ECS for Laravel
+# Amazon ECS (E-Commerce Services) Package for Laravel
 
-Whilst working on a project, I needed the ability to search for products on Amazon as well as lookup individual products based on their ASIN which led me to make a dedicated package for that as *sometimes*, the process to authorise with Amazon is a little awkward. To say the least.
+If you need the ability to search Amazon's catalog of products or lookup an individual item with Laravel, then this may be the package for you.
+
+**Please note, you'll need to ensure you have an associate tag before using this package.**
 
 ## Installation
 
@@ -8,11 +10,13 @@ Whilst working on a project, I needed the ability to search for products on Amaz
 composer require dawson/amazon-ecs
 ```
 
-After you have successfully installed, add the follow Service Provider and Facade to your `config/app.php`.
+After you have successfully installed, add the follow Service Provider to your `config/app.php`.
 
 ```php
 Dawson\AmazonECS\AmazonECSServiceProvider::class,
 ```
+
+And the following facade, also in `config/app.php`.
 
 ```php
 'Amazon' => Dawson\AmazonECS\AmazonECSFacade::class
@@ -50,10 +54,10 @@ Currently, there are two methods available which are `search` and `lookup`.
 ### Search
 
 ```php
-$response = Amazon::search('Home Alone');
+$results = Amazon::search('Home Alone')->json();
 ```
 
-**It's that simple!** The request should return an XML response.
+**It's that simple!**
 
 
 *Please note*, this currently searches the entire Amazon catalog. I plan on adding the ability to search within a given category *soon* so keep an eye out  for that.
@@ -63,10 +67,26 @@ $response = Amazon::search('Home Alone');
 You can also lookup any given item, assuming it's availble on your configure locale and is a valid **ASIN**, of which is possible by doing the following:
 
 ```php
-$product = Amazon::lookup('B004VLKY8M');
+$product = Amazon::lookup('B004VLKY8M')->json();
 ```
 
 This will simply return the product, it's attributes and item links.
+
+## Responses
+
+Currently, there are two available response methods. The default `xml` method, or my preferred - `json`.
+
+The following returns an XML string.
+
+```
+$xml = Amazon::search('Call of Duty')->xml();
+```
+
+And as you can probably assume, the following returns a JSON string.
+
+```
+$json = Amazon::search('Halo')->json();
+```
 
 ## Questions & Issues
 
@@ -84,4 +104,4 @@ This package is open-sourced software licensed under the MIT license.
 - [X] Locales
 - [ ] Better Exception Handling
 - [ ] Cart abilities, such as modifying, adding, clearing etc.
-- [ ] XML to JSON (the ECS API returns an XML response, I myself would like to have the ability to convert this to JSON - but optional)
+- [X] XML to JSON (the ECS API returns an XML response, I myself would like to have the ability to convert this to JSON - but optional)

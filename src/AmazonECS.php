@@ -34,6 +34,8 @@ class AmazonECS
 	{
 		$this->validConfig();
 
+		$this->response 		= null;
+
 		$this->access_key 		= config('amazon.access_key');
 		$this->secret_key 		= config('amazon.secret_key');
 		$this->associate_tag	= config('amazon.associate_tag');
@@ -56,7 +58,8 @@ class AmazonECS
 		$url 		= $this->url($params, $signature);
 
 		try {
-			return $this->client->request('GET', $url);
+			$this->response = $this->client->get($url)->getBody();
+			return $this;
 		} catch(ClientException $e) {
 			return $e->getResponse();
 		}
@@ -76,10 +79,35 @@ class AmazonECS
 		$url 		= $this->url($params, $signature);
 
 		try {
-			return $this->client->request('GET', $url);
+			$this->response = $this->client->get($url)->getBody();
+			return $this;
 		} catch(ClientException $e) {
 			return $e->getResponse();
 		}
+	}
+
+	/**
+	 * Returns the response as XML
+	 * 
+	 * @return Response
+	 */
+	public function xml()
+	{
+		return simplexml_load_string($this->response);
+	}
+
+	/**
+	 * Returns the response as JSON
+	 * 
+	 * @return Response
+	 */
+	public function json()
+	{
+		$xml  = simplexml_load_string($this->response);
+		$json = json_encode($xml);
+		$json = json_decode($json, true);
+
+		return $json;
 	}
 
 	/**
