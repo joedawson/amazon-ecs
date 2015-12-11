@@ -73,6 +73,10 @@ This will simply return the product, it's attributes and item links.
 
 Should you have any questions or come across a problem, please feel free to submit an issue.
 
+## License
+
+This package is open-sourced software licensed under the MIT license.
+
 ---
 
 ## Planned
