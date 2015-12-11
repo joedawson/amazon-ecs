@@ -49,6 +49,7 @@ class AmazonECS
 	 */
 	public function search($query)
 	{
+		$query		= rawurlencode($query);
 		$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => 'All', 'ResponseGroup' => 'Images,ItemAttributes']);
 		$string 	= $this->buildString($params);
 		$signature 	= $this->signString($string);
