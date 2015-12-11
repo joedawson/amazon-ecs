@@ -1,6 +1,6 @@
 # Amazon ECS for Laravel
 
-Whilst working on a project, I need the ability to search for products on Amazon as well as lookup individual products based on their ASIN which led me to make a dedicated package for that as *sometimes*, the process to authorise with Amazon is a little awkward. To say the least.
+Whilst working on a project, I needed the ability to search for products on Amazon as well as lookup individual products based on their ASIN which led me to make a dedicated package for that as *sometimes*, the process to authorise with Amazon is a little awkward. To say the least.
 
 ## Installation
 
