@@ -78,13 +78,13 @@ Currently, there are two available response methods. The default `xml` method, o
 
 The following returns an XML string.
 
-```
+```php
 $xml = Amazon::search('Call of Duty')->xml();
 ```
 
 And as you can probably assume, the following returns a JSON string.
 
-```
+```php
 $json = Amazon::search('Halo')->json();
 ```
 
