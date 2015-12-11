@@ -10,11 +10,11 @@ composer require dawson/amazon-ecs
 
 After you have successfully installed, add the follow Service Provider and Facade to your `config/app.php`.
 
-```
+```php
 Dawson\AmazonECS\AmazonECSServiceProvider::class,
 ```
 
-```
+```php
 'Amazon' => Dawson\AmazonECS\AmazonECSFacade::class
 ```
 
@@ -49,7 +49,7 @@ Currently, there are two methods available which are `search` and `lookup`.
 
 ### Search
 
-```
+```php
 $response = Amazon::search('Home Alone');
 ```
 
@@ -62,9 +62,8 @@ $response = Amazon::search('Home Alone');
 
 You can also lookup any given item, assuming it's availble on your configure locale and is a valid **ASIN**, of which is possible by doing the following:
 
-```
+```php
 $product = Amazon::product('B004VLKY8M');
-
 ```
 
 This will simply return the product, it's attributes and item links.
