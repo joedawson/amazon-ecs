@@ -54,7 +54,7 @@ trait Helpers {
 			'AWSAccessKeyId' 	=> $this->access_key,
 			'AssociateTag' 		=> $this->associate_tag,
 			'Operation'			=> $operation,
-			'Version'			=> '2011-08-01',
+			'Version'			=> '2013-08-01',
 			'Service'			=> 'AWSECommerceService',
 			'Timestamp'			=> gmdate("Y-m-d\TH:i:s\Z")
 		];

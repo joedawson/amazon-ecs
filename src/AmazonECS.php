@@ -24,7 +24,7 @@ class AmazonECS
 	 * @var array
 	 */
 	protected $locales = [
-		'co.uk', 'com', 'ca', 'br', 'de', 'es', 'fr', 'in', 'it', 'co.jp', 'com.mx'
+		'co.uk', 'com', 'ca', 'com.br', 'de', 'es', 'fr', 'in', 'it', 'co.jp', 'com.mx'
 	];
 
 	/**
