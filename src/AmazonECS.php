@@ -73,7 +73,7 @@ class AmazonECS
 	 */
 	public function lookup($id)
 	{
-		$params 	= $this->params(['ItemId' => $id], 'ItemLookup');
+		$params 	= $this->params(['ItemId' => $id, 'ResponseGroup' => 'Images,ItemAttributes'], 'ItemLookup');
 		$string 	= $this->buildString($params);
 		$signature 	= $this->signString($string);
 		$url 		= $this->url($params, $signature);
