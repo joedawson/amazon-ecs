@@ -41,6 +41,7 @@ class AmazonECS
 		$this->associate_tag	= config('amazon.associate_tag');
 		$this->locale			= config('amazon.locale');
 		$this->client 			= new Client;
+		$this->responsgroup		= array();
 	}
 
 	/**
@@ -52,7 +53,7 @@ class AmazonECS
 	public function search($query)
 	{
 		$query		= rawurlencode($query);
-		$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => 'All', 'ResponseGroup' => 'Images,ItemAttributes']);
+		$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => 'All', 'ResponseGroup' => 'Images,ItemAttributes,OfferFull']);
 		$string 	= $this->buildString($params);
 		$signature 	= $this->signString($string);
 		$url 		= $this->url($params, $signature);
@@ -73,7 +74,7 @@ class AmazonECS
 	 */
 	public function lookup($id)
 	{
-		$params 	= $this->params(['ItemId' => $id, 'ResponseGroup' => 'Images,ItemAttributes'], 'ItemLookup');
+		$params 	= $this->params(['ItemId' => $id, 'ResponseGroup' => 'Images,ItemAttributes,OfferFull'], 'ItemLookup');
 		$string 	= $this->buildString($params);
 		$signature 	= $this->signString($string);
 		$url 		= $this->url($params, $signature);
