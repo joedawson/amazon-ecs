@@ -41,6 +41,8 @@ class AmazonECS
 		$this->associate_tag	= config('amazon.associate_tag');
 		$this->locale			= config('amazon.locale');
 		$this->client 			= new Client;
+		// LOADING RESPONSE_GROUP FROM CONFIG AND KILLING WHITESPACE
+		$this->responseGroup	= $string = str_replace(' ', '', config('amazon.response_group'));
 	}
 
 	/**
@@ -52,7 +54,7 @@ class AmazonECS
 	public function search($query)
 	{
 		$query		= rawurlencode($query);
-		$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => 'All', 'ResponseGroup' => 'Images,ItemAttributes']);
+		$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => 'All', 'ResponseGroup' => $this->responseGroup]);
 		$string 	= $this->buildString($params);
 		$signature 	= $this->signString($string);
 		$url 		= $this->url($params, $signature);
@@ -73,7 +75,7 @@ class AmazonECS
 	 */
 	public function lookup($id)
 	{
-		$params 	= $this->params(['ItemId' => $id, 'ResponseGroup' => 'Images,ItemAttributes'], 'ItemLookup');
+		$params 	= $this->params(['ItemId' => $id, 'ResponseGroup' =>  $this->responseGroup], 'ItemLookup');
 		$string 	= $this->buildString($params);
 		$signature 	= $this->signString($string);
 		$url 		= $this->url($params, $signature);
