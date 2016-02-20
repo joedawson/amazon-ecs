@@ -20,6 +20,12 @@ return [
 	/**
 	 * Preferred locale
 	 */
-	'locale' => 'co.uk'
+	'locale' => 'co.uk',
+
+	/**
+	 * Preferred response group
+	 */
+	'response_group' => env('AMAZON_RESPONSE_GROUP', 'Images,ItemAttributes')
+
 
 ];
