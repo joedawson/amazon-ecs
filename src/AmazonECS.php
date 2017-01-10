@@ -48,13 +48,14 @@ class AmazonECS
 	 * Amazon Product Advertisting API - ItemSearch
 	 * 
 	 * @param  string $query
+	 * @param  string $category
 	 * @return response
 	 */
-	public function search($query)
+	public function search($query, $category = 'All')
 	{
+		
 		$query		= rawurlencode($query);
-		$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => 'All', 'ResponseGroup' => $this->response_group]);
-		$string 	= $this->buildString($params);
+		$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => $category, 'ResponseGroup' => 'Images,ItemAttributes']);		$string 	= $this->buildString($params);
 		$signature 	= $this->signString($string);
 		$url 		= $this->url($params, $signature);
 
