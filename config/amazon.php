@@ -20,7 +20,7 @@ return [
 	/**
 	 * Preferred locale
 	 */
-	'locale' => 'co.uk',
+	'locale' => env('AMAZON_LOCALE', 'co.uk'),
 
 	/**
 	 * Preferred response group
