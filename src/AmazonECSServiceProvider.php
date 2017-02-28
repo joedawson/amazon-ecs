@@ -25,6 +25,8 @@ class AmazonECSServiceProvider extends ServiceProvider
 	*/
 	public function register()
 	{
-		$this->app->singleton(AmazonECS::class);
+		$this->app->bind('amazon-ecs', function($app) {
+			return new AmazonECS;
+		});
 	}
 }
