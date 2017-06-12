@@ -25,7 +25,12 @@ return [
 	/**
 	 * Preferred response group
 	 */
-	'response_group' => env('AMAZON_RESPONSE_GROUP', 'Images,ItemAttributes')
+	'response_group' => env('AMAZON_RESPONSE_GROUP', 'Images,ItemAttributes'),
+
+        /**
+         * Preferred search index
+         */
+	'search_index' => env('AMAZON_SEARCH_INDEX', 'All'),
 
 
 ];
