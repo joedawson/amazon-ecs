@@ -48,12 +48,17 @@ class AmazonECS
 	 * Amazon Product Advertisting API - ItemSearch
 	 * 
 	 * @param  string $query
+	 * @param  int $page
 	 * @return response
 	 */
-	public function search($query)
+	public function search($query, $page = 1)
 	{
 		$query		= rawurlencode($query);
-		$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => config('amazon.search_index'), 'ResponseGroup' => $this->response_group]);
+		if ($page == 1) {
+			$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => 'All', 'ResponseGroup' => $this->response_group]);
+		} else {
+			$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => 'All', 'ResponseGroup' => $this->response_group, 'ItemPage'=>$page]);
+		}
 		$string 	= $this->buildString($params);
 		$signature 	= $this->signString($string);
 		$url 		= $this->url($params, $signature);
