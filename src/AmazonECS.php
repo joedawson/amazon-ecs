@@ -61,7 +61,7 @@ class AmazonECS
 		try {
 			$this->response = $this->client->get($url)->getBody();
 			return $this;
-		} catch(ClientException $e) {
+		} catch(ClientErrorResponseException $e) {
 			return $e->getResponse();
 		}
 	}
@@ -106,7 +106,7 @@ class AmazonECS
 		try {
 			$this->response = $this->client->get($url)->getBody();
 			return $this;
-		} catch(ClientException $e) {
+		} catch(ClientErrorResponseException $e) {
 			return $e->getResponse();
 		}
 	}
