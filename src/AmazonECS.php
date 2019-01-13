@@ -55,9 +55,9 @@ class AmazonECS
 	{
 		$query		= rawurlencode($query);
 		if ($page == 1) {
-			$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => 'All', 'ResponseGroup' => $this->response_group]);
+			$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => config('amazon.search_index'), 'ResponseGroup' => $this->response_group]);
 		} else {
-			$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => 'All', 'ResponseGroup' => $this->response_group, 'ItemPage'=>$page]);
+			$params 	= $this->params(['Keywords' => $query, 'SearchIndex' => config('amazon.search_index'), 'ResponseGroup' => $this->response_group, 'ItemPage'=>$page]);
 		}
 		$string 	= $this->buildString($params);
 		$signature 	= $this->signString($string);
