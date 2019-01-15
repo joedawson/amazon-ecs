@@ -87,6 +87,13 @@ And as you can probably assume, the following returns a JSON string.
 ```php
 $json = Amazon::search('Halo')->json();
 ```
+## ISBN Search
+
+If anyone interested in getting book details from ISBN, there's the method - `isbn` 
+
+```php
+$json = Amazon::isbn('ISBN')->json();
+```
 
 ## Questions & Issues
 

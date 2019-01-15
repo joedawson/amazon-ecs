@@ -66,10 +66,34 @@ class AmazonECS
 		try {
 			$this->response = $this->client->get($url)->getBody();
 			return $this;
-		} catch(ClientException $e) {
+		} catch(ClientErrorResponseException $e) {
 			return $e->getResponse();
 		}
 	}
+	
+	/**
+	 * Amazon Product Advertisting API - Search by ISBN
+	 *
+	 * @param  string $query
+	 * @return response
+	 */
+
+	public function isbn($query)
+	{
+		$query		= rawurlencode($query);
+		$params 	= $this->params(['Keywords' => $query, 'IdType' => 'ISBN', 'ItemId' => $query, 'SearchIndex' => config('amazon.search_index'), 'ResponseGroup' => 'Large']);
+		$string 	= $this->buildString($params);
+		$signature 	= $this->signString($string);
+		$url 		= $this->url($params, $signature);
+
+		try {
+			$this->response = $this->client->get($url)->getBody();
+			return $this;
+		} catch(ClientErrorResponseException $e) {
+			return $e->getResponse();
+		}
+	}
+
 
 	/**
 	 * Amazon Product Advertisting API - ItemLookup
@@ -87,7 +111,7 @@ class AmazonECS
 		try {
 			$this->response = $this->client->get($url)->getBody();
 			return $this;
-		} catch(ClientException $e) {
+		} catch(ClientErrorResponseException $e) {
 			return $e->getResponse();
 		}
 	}
