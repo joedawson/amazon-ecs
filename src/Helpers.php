@@ -38,7 +38,7 @@ trait Helpers {
 	 */
 	function url($params, $signature)
 	{
-		return 'http://' . $this->endpoint() . '/onca/xml?' . $params . '&Signature=' . $signature;
+		return 'https://' . $this->endpoint() . '/onca/xml?' . $params . '&Signature=' . $signature;
 	}
 
 	/**
