@@ -13,14 +13,14 @@ class AmazonECS
 
 	/**
 	 * Base API URL
-	 * 
+	 *
 	 * @var string
 	 */
 	protected $baseUrl = 'webservices.amazon';
 
 	/**
 	 * Available Locales
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $locales = [
@@ -46,7 +46,7 @@ class AmazonECS
 
 	/**
 	 * Amazon Product Advertisting API - ItemSearch
-	 * 
+	 *
 	 * @param  string $query
 	 * @param  int $page
 	 * @return response
@@ -73,16 +73,16 @@ class AmazonECS
 
 	/**
 	 * Amazon Product Advertisting API - ItemLookup
-	 * 
+	 *
 	 * @param  string $id
 	 * @return response
 	 */
 	public function lookup($id)
 	{
-		$params 	= $this->params(['ItemId' => $id, 'ResponseGroup' =>  $this->response_group], 'ItemLookup');
-		$string 	= $this->buildString($params);
-		$signature 	= $this->signString($string);
-		$url 		= $this->url($params, $signature);
+		$params	   = $this->params(['ItemId' => $id, 'ResponseGroup' =>  $this->response_group], 'ItemLookup');
+		$string	   = $this->buildString($params);
+		$signature = $this->signString($string);
+		$url	   = $this->url($params, $signature);
 
 		try {
 			$this->response = $this->client->get($url)->getBody();
@@ -94,7 +94,7 @@ class AmazonECS
 
 	/**
 	 * Returns the response as XML
-	 * 
+	 *
 	 * @return Response
 	 */
 	public function xml()
@@ -104,7 +104,7 @@ class AmazonECS
 
 	/**
 	 * Returns the response as JSON
-	 * 
+	 *
 	 * @return Response
 	 */
 	public function json()
@@ -118,7 +118,7 @@ class AmazonECS
 
 	/**
 	 * Determines if the configuration was valid.
-	 * 
+	 *
 	 * @return InvalidException
 	 */
 	private function validConfig()
